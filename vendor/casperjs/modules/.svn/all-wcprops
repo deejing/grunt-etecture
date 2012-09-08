@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/kabelbw/!svn/ver/12252/deployment-helper/vendor/casperjs/modules
+END
+events.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/kabelbw/!svn/ver/12252/deployment-helper/vendor/casperjs/modules/events.js
+END
+tester.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/kabelbw/!svn/ver/12252/deployment-helper/vendor/casperjs/modules/tester.js
+END
+cli.js
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/kabelbw/!svn/ver/12252/deployment-helper/vendor/casperjs/modules/cli.js
+END
+xunit.js
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/kabelbw/!svn/ver/12252/deployment-helper/vendor/casperjs/modules/xunit.js
+END
+colorizer.js
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/kabelbw/!svn/ver/12252/deployment-helper/vendor/casperjs/modules/colorizer.js
+END
+mouse.js
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/kabelbw/!svn/ver/12252/deployment-helper/vendor/casperjs/modules/mouse.js
+END
+querystring.js
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/kabelbw/!svn/ver/12252/deployment-helper/vendor/casperjs/modules/querystring.js
+END
+casper.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/kabelbw/!svn/ver/12252/deployment-helper/vendor/casperjs/modules/casper.js
+END
+injector.js
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/kabelbw/!svn/ver/12252/deployment-helper/vendor/casperjs/modules/injector.js
+END
+clientutils.js
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/kabelbw/!svn/ver/12252/deployment-helper/vendor/casperjs/modules/clientutils.js
+END
+utils.js
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/kabelbw/!svn/ver/12252/deployment-helper/vendor/casperjs/modules/utils.js
+END

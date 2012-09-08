@@ -1,0 +1,37 @@
+{
+  "name": "grunt-opencms",
+  "description": "Some tasks for automating opencms stuff",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://github.com/aslansky/grunt-opencms",
+  "author": {
+    "name": "Alexander Slansky",
+    "email": "alexander@slansky.net",
+    "url": "http://slansky.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aslansky/grunt-opencms.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aslansky/grunt-opencms/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/kahlil/grunt-compass/blob/master/LICENSE-MIT"
+    }
+  ],
+  "bin": "bin/grunt-opencms",
+  "engines": {
+    "node": "*"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.15"
+  },
+  "keywords": [
+    "gruntplugin",
+    "opencms",
+    "manifest"
+  ]
+}
