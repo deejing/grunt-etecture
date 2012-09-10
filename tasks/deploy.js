@@ -17,7 +17,7 @@ module.exports = function(grunt) {
         // check grunt command arguments
         if (!server || !target || target === 'config') {
             if (target === 'config') grunt.warn('Don\'t call deploy:config directly.');
-            else grunt.warn('Use: `grunt deploy:<TARGET>:<SERVER>');
+            else grunt.warn('Use: `grunt deploy:<SERVER>:<TARGET>');
         }
 
         // check if server is configured
