@@ -42,10 +42,16 @@ module.exports = function(grunt) {
           filesInManifest.push(_.trim(file, '/'));
         });
         // get files from resource folders
-        var files = _.map(grunt.file.expand(folders), function (item) {
-          // triming starting and ending /
-          return _.trim(item, '/');
-        });
+        var files;
+        try {
+          files = _.map(grunt.file.expand(folders), function (item) {
+            // triming starting and ending /
+            return _.trim(item, '/');
+          });
+        }
+        catch (e) {
+          files = [];
+        }
         // get the difference between files in manifest and files in resource folders
         var missingFiles = _.difference(filesInManifest, resources, files);
         // output result messages
