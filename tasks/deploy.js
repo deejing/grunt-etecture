@@ -1,6 +1,7 @@
 var path = require('path'),
     fs= require('fs'),
-    which = require('which').sync;
+    which = require('which').sync,
+    getPhanomCmd = require('../lib/phantomCmd');
 
 module.exports = function(grunt) {
 
@@ -102,7 +103,6 @@ module.exports = function(grunt) {
                 done: function (err) {
                     if (!err) {
                         grunt.log.ok('Ok');
-                        // go to next iteration
                         deploy();
                     }
                     else {
@@ -146,26 +146,6 @@ module.exports = function(grunt) {
             options.done(code);
         });
     });
-
-    // get system dependent phantom command
-    var getPhanomCmd = function () {
-        var cmd = path.join(__dirname, '../vendor/phantomjs/');
-        if (process.platform === 'win32') {
-            cmd = path.join(cmd, 'win32/phantomjs.exe');
-        }
-        else if (process.platform === 'darwin') {
-            cmd = path.join(cmd, 'darwin/phantomjs');
-        }
-        else if (process.platform === 'linux') {
-            if (process.arch === 'x64') {
-                cmd = path.join(cmd, 'linux-x86_64/bin/phantomjs');
-            }
-            else {
-                cmd = path.join(cmd, 'linux-i686/bin/phantomjs');
-            }
-        }
-        return cmd;
-    };
 
     grunt.registerHelper('deploy', function(options) {
         grunt.verbose.writeln('Running ' + getPhanomCmd() + ' with arguments ' + grunt.log.wordlist(options.args));
