@@ -1,7 +1,7 @@
 var path = require('path'),
     fs= require('fs'),
     which = require('which').sync,
-    getPhanomCmd = require('../lib/phantomCmd');
+    getPhantomCmd = require('../lib/phantomCmd');
 
 module.exports = function(grunt) {
 
@@ -148,9 +148,9 @@ module.exports = function(grunt) {
     });
 
     grunt.registerHelper('deploy', function(options) {
-        grunt.verbose.writeln('Running ' + getPhanomCmd() + ' with arguments ' + grunt.log.wordlist(options.args));
+        grunt.verbose.writeln('Running ' + getPhantomCmd() + ' with arguments ' + grunt.log.wordlist(options.args));
         return grunt.utils.spawn({
-            cmd: getPhanomCmd(),
+            cmd: getPhantomCmd(),
             args: options.args
         }, function (err, result, code) {
             grunt.verbose.write(result);
