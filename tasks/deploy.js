@@ -48,7 +48,7 @@ module.exports = function(grunt) {
                 var files = fs.readdirSync(path.join(process.cwd(), config.dist));
                 var file = null;
                 files.forEach(function (f) {
-                  if (f.indexOf(module.replace('create-', '') + '.zip') > 0) {
+                  if (f.indexOf(module + '.zip') > -1) {
                     file = path.join(process.cwd(), config.dist, f);
                   }
                 });
@@ -76,6 +76,10 @@ module.exports = function(grunt) {
                             }
                         }
                     });
+                }
+                else {
+                    grunt.log.error('zip-file for ' + module + ' not found.');
+                    callback();
                 }
             }, done);
         };
