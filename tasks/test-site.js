@@ -34,6 +34,11 @@ module.exports = function(grunt) {
             args.push('--xunit=' + path.join(process.cwd(), this.data.xunit));
         }
 
+        if (grunt.option('verbose')) {
+            args.push('--direct');
+            args.push('--log-level=info');
+        }
+
         // start phantomjs with casper bootstrap
         grunt.log.subhead('Running test suite at ' + this.data.suite);
         grunt.helper('test-runner', {
