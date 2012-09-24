@@ -63,17 +63,23 @@ module.exports = function(grunt) {
                 });
                 if (file) {
                     grunt.log.subhead('Deploying ' + module);
+                    var args = [];
+                    args.push(path.join(__dirname, '../lib/', 'opencms-casper.js'));
+                    args.push(path.join(__dirname, '../vendor/casperjs'));
+                    args.push('--url=' + config.servers[server].url);
+                    args.push('--file=' + file);
+                    args.push('--user=' + config.servers[server].user);
+                    args.push('--pass=' + config.servers[server].pass);
+                    args.push('--module=' + module);
+                    if (config.log) {
+                        args.push('--log=' + config.log);
+                    }
+                    if (grunt.option('verbose')) {
+                        args.push('--direct');
+                        args.push('--log-level=info');
+                    }
                     grunt.helper('deploy', {
-                        args: [
-                            path.join(__dirname, '../lib/', 'opencms-casper.js'),
-                            config.servers[server].url,
-                            file,
-                            config.servers[server].user,
-                            config.servers[server].pass,
-                            path.join(__dirname, '../vendor/casperjs'),
-                            module,
-                            config.log || ''
-                        ],
+                        args: args,
                         done: function (err) {
                             if (!err) {
                                 grunt.log.ok('Ok');
@@ -180,7 +186,12 @@ module.exports = function(grunt) {
                 grunt.warn('PhantomJS not found.', 90);
             }
             else {
-                result.split('\n').forEach(grunt.log.error, grunt.log);
+                if (result.stdout) {
+                    result.stdout.split('\n').forEach(grunt.log.error, grunt.log);
+                }
+                else {
+                    result.split('\n').forEach(grunt.log.error, grunt.log);
+                }
                 grunt.warn('PhantomJS exited unexpectedly with exit code ' + code + '.', 90);
             }
             options.done(code);
