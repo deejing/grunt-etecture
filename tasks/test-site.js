@@ -8,6 +8,16 @@ var path = require('path'),
 
 module.exports = function(grunt) {
 
+    var dateToYMD = function (date) {
+        var d = date.getDate();
+        var m = date.getMonth()+1;
+        var y = date.getFullYear();
+        var hh = date.getHours();
+        var mm = date.getMinutes();
+        var ss = date.getSeconds();
+        return '' + y + '' + (m<=9?'0'+m:m) +''+ (d<=9?'0'+d:d) + '_' + (hh<=9?'0'+hh:hh) + '' + (mm<=9?'0'+mm:mm) + '' + (ss<=9?'0'+ss:ss);
+    };
+
     grunt.registerMultiTask('test-site', 'Runs a test suite with casper on specified website.', function() {
 
         // Tell grunt this task is asynchronous.
@@ -31,7 +41,15 @@ module.exports = function(grunt) {
 
         // if we need to write a xunit report set argument
         if (this.data.xunit) {
+            grunt.file.mkdir(path.join(process.cwd(), this.data.xunit));
             args.push('--xunit=' + path.join(process.cwd(), this.data.xunit));
+        }
+
+        // if we need to generate screenshots of the pages we visit
+        if (this.data.screensDir) {
+            var d = path.join(process.cwd(), this.data.screensDir, dateToYMD(new Date()));
+            grunt.file.mkdir(d);
+            args.push('--screens=' + d);
         }
 
         if (grunt.option('verbose')) {
