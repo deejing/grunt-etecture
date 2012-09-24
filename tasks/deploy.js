@@ -1,6 +1,7 @@
 var path = require('path'),
     fs= require('fs'),
     which = require('which').sync,
+    http = require('http'),
     getPhantomCmd = require('../lib/phantomCmd');
 
 module.exports = function(grunt) {
@@ -35,6 +36,13 @@ module.exports = function(grunt) {
         }
         // check for required target properties
         grunt.config.requires('deploy.targets.' + target + '.modules');
+
+        // check for opencms server
+        http.get(config.servers[server].url, function(res) {
+          start();
+        }).on('error', function(e) {
+          grunt.warn('OpenCMS server is not responding.\nDid you set the correct server url in grunt.json? <' + config.servers[server].url + '>\nIs your OpenCMS server running?\n');
+        });
 
         // starts deployment
         var deploy = function () {
@@ -86,34 +94,36 @@ module.exports = function(grunt) {
         };
 
         // start ant build if not --skip-build
-        if (!grunt.option('skip-build')) {
-            var antArgs = [];
-            if (grunt.option('clean')) {
-                antArgs.push('clean');
-            }
-            // ant targets start with create- before the module name
-            config.targets[target].modules.forEach(function (module) {
-                antArgs.push('create-' + module);
-            });
-            antArgs.push('-Dtarget=' + config.servers[server].antTarget);
-            // start ant command
-            grunt.log.subhead('Starting build');
-            grunt.helper('ant', {
-                args: antArgs,
-                done: function (err) {
-                    if (!err) {
-                        grunt.log.ok('Ok');
-                        deploy();
-                    }
-                    else {
-                        grunt.fail(err);
-                    }
+        var start = function () {
+            if (!grunt.option('skip-build')) {
+                var antArgs = [];
+                if (grunt.option('clean')) {
+                    antArgs.push('clean');
                 }
-            });
-        }
-        else {
-            deploy();
-        }
+                // ant targets start with create- before the module name
+                config.targets[target].modules.forEach(function (module) {
+                    antArgs.push('create-' + module);
+                });
+                antArgs.push('-Dtarget=' + config.servers[server].antTarget);
+                // start ant command
+                grunt.log.subhead('Starting build');
+                grunt.helper('ant', {
+                    args: antArgs,
+                    done: function (err) {
+                        if (!err) {
+                            grunt.log.ok('Ok');
+                            deploy();
+                        }
+                        else {
+                            grunt.fail(err);
+                        }
+                    }
+                });
+            }
+            else {
+                deploy();
+            }
+        };
 
     });
 
