@@ -34,7 +34,7 @@ module.exports = function(grunt) {
         args.push(path.join(__dirname, '../vendor/casperjs'));
 
         // arguments for url
-        args.push('--url=' + this.data.url);
+        args.push('--url=' + grunt.template.process(this.data.url, grunt.config()));
 
         // argument for test suite directory
         args.push('--suite=' + path.join(process.cwd(), this.data.suite));

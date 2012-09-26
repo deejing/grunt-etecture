@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         grunt.config.requires('deploy.dist', 'deploy.servers', 'deploy.targets');
 
         // get deploy config object
-        var config = grunt.config.get('deploy');
+        var config = grunt.config.process('deploy');
 
         // check grunt command arguments
         if (!server || !target || target === 'config') {
