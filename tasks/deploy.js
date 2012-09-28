@@ -6,7 +6,7 @@ var path = require('path'),
 
 module.exports = function(grunt) {
 
-    grunt.registerTask('deploy', 'Deploy modules to opencms.', function(server, target) {
+    grunt.registerTask('deploy', 'Deploy modules to opencms.', function(server, target, env) {
 
         // Tell grunt this task is asynchronous.
         var done = this.async();
@@ -111,6 +111,9 @@ module.exports = function(grunt) {
                     antArgs.push('create-' + module);
                 });
                 antArgs.push('-Dtarget=' + config.servers[server].antTarget);
+                if (env && env === 'dev') {
+                    antArgs.push('-DassetEnv=dev');
+                }
                 // start ant command
                 grunt.log.subhead('Starting build');
                 grunt.helper('ant', {
