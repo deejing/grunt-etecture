@@ -12,7 +12,10 @@ _(Coming soon)_
 _(Coming soon)_
 
 ## Release History
-_(Nothing yet)_
+
+v0.2.0: Added automatic generation of checkout manifests
+
+v0.1.0: Initial release
 
 ## License
 Copyright (c) 2012 Alexander Slansky
