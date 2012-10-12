@@ -13,6 +13,8 @@ _(Coming soon)_
 
 ## Release History
 
+v0.2.1: Added automatic generation of system-webshop manifests
+
 v0.2.0: Added automatic generation of checkout manifests
 
 v0.1.0: Initial release
