@@ -1,6 +1,6 @@
-# grunt-opencms
+# grunt-etecture
 
-Some tasks for automating OpenCMS 6 stuff.
+Grunt tasks for repetitive tasks at etecture.
 
 ## Getting Started
 _(Coming soon)_
