@@ -45,10 +45,7 @@ module.exports = function(grunt) {
         var m = mime.lookup(f);
         if (m.indexOf('image') > -1) {
             return 'image';
-        } else if ( f.indexOf('.jsp') > -1
-            && (m === 'application/octet-stream'
-            ||  m === 'text/html'
-            ||  m === 'text/xml')) {
+        } else if ( f.indexOf('.jsp') === f.length-4 ) {
             return 'jsp';
         }
         else {
