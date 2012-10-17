@@ -64,7 +64,7 @@ module.exports = function(grunt) {
                 if (file) {
                     grunt.log.subhead('Deploying ' + module);
                     var args = [];
-                    args.push(path.join(__dirname, '../lib/', 'opencms-casper.js'));
+                    args.push(path.join(__dirname, '../lib/', 'deploy-runner.js'));
                     args.push(path.join(__dirname, '../vendor/casperjs'));
                     args.push('--url=' + config.servers[server].url);
                     args.push('--file=' + file);
