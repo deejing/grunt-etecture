@@ -41,7 +41,9 @@ module.exports = function(grunt) {
 
         // if we need to write a xunit report set argument
         if (this.data.xunit) {
-            grunt.file.mkdir(path.join(process.cwd(), this.data.xunit));
+            var xpath = this.data.xunit.split('/');
+            xpath.pop();
+            grunt.file.mkdir(path.join(process.cwd(), xpath.join('/')));
             args.push('--xunit=' + path.join(process.cwd(), this.data.xunit));
         }
 
