@@ -1,10 +1,4 @@
-/* Features
-- Seiten Root URL muss aus grunt.js kommen
-- Ordner der Test Suite muss aus grunt.js kommen
-- Ausgabe als xUnit.xml oder auf Screen
-*/
-var path = require('path'),
-    getPhantomCmd = require('../lib/phantomCmd');
+var path = require('path');
 
 module.exports = function(grunt) {
 
@@ -61,7 +55,7 @@ module.exports = function(grunt) {
 
         // start phantomjs with casper bootstrap
         grunt.log.subhead('Running test suite at ' + this.data.suite);
-        grunt.helper('test-runner', {
+        grunt.helper('phantomjs', {
             args: args,
             done: function (err, result, testError) {
                 if (!err) {
@@ -72,43 +66,6 @@ module.exports = function(grunt) {
                     grunt.fail(err);
                 }
             }
-        });
-    });
-
-    grunt.registerHelper('test-runner', function(options) {
-        grunt.verbose.writeln('Running ' + getPhantomCmd() + ' with arguments ' + grunt.log.wordlist(options.args));
-        return grunt.utils.spawn({
-            cmd: getPhantomCmd(),
-            args: options.args
-        }, function (err, result, code) {
-            if (!err) {
-                return options.done(null, result.stdout, false);
-            }
-            // Something went horribly wrong.
-            grunt.verbose.or.writeln();
-            grunt.log.write('Running PhantomJS ... ').error();
-            if (code === 127) {
-                grunt.log.errorlns(
-                    'In order for this task to work properly, PhantomJS must be ' +
-                    'installed and in the system PATH (if you can run "phantomjs" at' +
-                    ' the command line, this task should work). Unfortunately, ' +
-                    'PhantomJS cannot be installed automatically via npm or grunt. '
-                );
-                grunt.warn('PhantomJS not found.', 90);
-            }
-            else {
-                if (result.stdout) {
-                    return options.done(null, result.stdout, true);
-                }
-                else if (result.stderr) {
-                    result.stderr.split('\n').forEach(grunt.log.error, grunt.log);
-                }
-                else {
-                    result.split('\n').forEach(grunt.log.error, grunt.log);
-                }
-                grunt.warn('PhantomJS exited unexpectedly with exit code ' + code + '.', 90);
-            }
-            options.done(code);
         });
     });
 };
